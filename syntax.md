@@ -10,27 +10,45 @@
   - Expression language
   - Immutable, Pure, and Total by default
 
+- Advantages over JavaScript:
+  - Turn runtime errors into compile time errors
+  - Easier to make changes without breaking code
+  - Fully declarative (get more done with less)
+
 ---
 
-# Whitespace Syntax
+# Basic Syntax
 
-Purescript functions are seperated by their arguments with a space.
+Values/constants are declared with an `=`
 
-Purescript functions are declared with an `=`
+```purescript
+x = 5
 
-Static Values/Constants work the same way
+y = x * 2
+```
 
-this might look a bit like coffeescript
+Functions are also declared using an `=` 
 
 ```purescript
 add a b = a + b
 
 addOne b = add 1 b
 
-one = addOne (3 - 2)
-
-two = addOne $ 4 - 2
+two = addOne (3 - 2)
 ```
+**JS equivalents:**
+```javascript
+const add = (a, b) => a + b
+
+const addOne = b => add(1, b)
+
+const two = addOne(3 - 2)
+```
+
+Purescript looks a bit like coffeescript.
+
+Each function parameter/argument is seperated only by spaces.
+
 A function identifier on the left of `=` will always return the results on the right.
 
 A function or value should always be equivalent to it's representation - This is called referential transparency.
@@ -64,6 +82,23 @@ the resulting function must be _commutative_
 
 ---
 
+# Function application
+
+`$`
+
+A function to the left of the operator is applied to the result of the expression on the right.
+
+```purescript
+sqrt (add 10.0 (round 15.25)))
+```
+can be rewritten as
+```purescript
+sqrt $ add 10.0 $ round 15.25
+```
+
+
+---
+
 # Curry By Default
 
 each function in purescript takes exactly one input argument
@@ -89,6 +124,17 @@ and finally...
 result = subFromSeven 2
 -- or
 result' = addThenSub 5 2 2
+```
+
+JS equivalents
+```javascript
+const addThenSub = x => y => z => (x + y) - z
+
+const add5ThenSub = addThenSub(5)
+
+const subFromSeven = addThenSub(5)(2)
+
+const result = addThenSub(5)(2)(2)
 ```
 note the use of `'` in identifiers,  this is completely legal and you will see it a lot. it is commonly pronounced `prime`.
 
