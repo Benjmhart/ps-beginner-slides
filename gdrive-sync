@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rclone copy /home/ben/Projects/ps-edu/beginner-slides GoogleDrive-vw:vimwiki ; echo "$(date) - ps-slide sync" >> /home/ben/Desktop/cronlog
